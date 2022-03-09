@@ -35,7 +35,14 @@
     <div class="container">
       <div class="bill-container">
         <label class="bill-label" for="bill">Bill</label>
-        <input class="bill-input" type="number" id="bill" name="bill" min="1" />
+        <input
+          class="bill-input"
+          type="number"
+          id="bill"
+          name="bill"
+          min="1"
+          placeholder="0"
+        />
         <img
           class="icon-dollar"
           src="images/icon-dollar.svg"
@@ -66,6 +73,7 @@
           id="num-people"
           name="num-people"
           min="1"
+          placeholder="0"
         />
         <img
           class="icon-person"
@@ -74,16 +82,16 @@
         />
       </div>
       <div class="tip-total-container">
-        <div class="tip-total-text">
+        <div class="tip-total-text top-total">
           <p>Tip Amount</p>
           <p class="small-text">/ person</p>
         </div>
-        <p class="tip-total-amount">$0.00</p>
-        <div class="tip-total-text">
+        <p class="tip-total-amount top-total">$0.00</p>
+        <div class="tip-total-text middle-total">
           <p>Total</p>
           <p class="small-text">/ person</p>
         </div>
-        <p class="tip-total-amount">$0.00</p>
+        <p class="tip-total-amount middle-total">$0.00</p>
         <button type="reset" class="reset-btn">RESET</button>
       </div>
     </div>

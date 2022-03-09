@@ -91,6 +91,11 @@ button {
   font-size: 1.5rem;
   text-align: right;
 }
+.num-people-input::-webkit-input-placeholder,
+.bill-input::-webkit-input-placeholder {
+  text-align: right;
+  color: #9ebbbd;
+}
 
 /* select tip */
 
@@ -135,7 +140,6 @@ button {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  margin-bottom: 2rem;
   background-color: var(--dark-cyan);
   border-radius: 15px;
   padding: 2rem 1.5rem 1rem;
@@ -164,4 +168,61 @@ button {
   font-weight: 800;
   font-size: 1.25rem;
   height: 48px;
+}
+
+@media (min-width: 950px) {
+  /* container */
+  .container {
+    width: 920px;
+    height: 481px;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+  /* bill, select, num people */
+  .bill-container,
+  .num-people-container,
+  .select-tip-container {
+    width: 379px;
+  }
+
+  .bill-container,
+  .num-people-container {
+    height: 78px;
+  }
+  .select-tip-container {
+    height: 112px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-self: center;
+  }
+  .select-tip-text {
+    grid-column: 1/-1;
+  }
+
+  .num-people-container {
+    align-self: end;
+  }
+
+  /* tip totals */
+  .tip-total-container {
+    grid-column: 2/ -1;
+    grid-row: 1 / 4;
+    height: 417px;
+    width: 413px;
+    padding: 3rem 2rem;
+  }
+
+  .top-total {
+    align-self: start;
+  }
+
+  .middle-total {
+    align-self: start;
+    margin-bottom: 5.5rem;
+  }
+
+  .reset-btn {
+    align-self: end;
+  }
 }
