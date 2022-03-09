@@ -51,11 +51,21 @@
       </div>
       <div class="select-tip-container">
         <p class="select-tip-text">Select Tip %</p>
-        <button class="percent-button" type="button">5%</button>
-        <button class="percent-button" type="button">10%</button>
-        <button class="percent-button" type="button">15%</button>
-        <button class="percent-button" type="button">25%</button>
-        <button class="percent-button" type="button">50%</button>
+        <button class="percent-button" data-amount=".05" type="button">
+          5%
+        </button>
+        <button class="percent-button" data-amount=".10" type="button">
+          10%
+        </button>
+        <button class="percent-button" data-amount=".15" type="button">
+          15%
+        </button>
+        <button class="percent-button" data-amount=".25" type="button">
+          25%
+        </button>
+        <button class="percent-button" data-amount=".50" type="button">
+          50%
+        </button>
         <input
           type="number"
           class="custom-tip-input"
@@ -64,9 +74,12 @@
         />
       </div>
       <div class="num-people-container">
-        <label class="num-people-label" for="num-people">
-          Number of People</label
-        >
+        <div class="num-people-err">
+          <label class="num-people-label" for="num-people">
+            Number of People</label
+          >
+          <p class="error-text">Can't be 0</p>
+        </div>
         <input
           class="num-people-input"
           type="number"

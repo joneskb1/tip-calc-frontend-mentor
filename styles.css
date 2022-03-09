@@ -13,6 +13,7 @@
   --light-gray-cyan: hsl(185, 41%, 84%);
   --light-gray-cyan2: hsl(189, 41%, 97%);
   --highlight: hsl(172, 67%, 45%);
+  --active: #9fe8df;
 }
 
 body {
@@ -24,6 +25,10 @@ body {
 
 button {
   border: none;
+}
+
+.error-text {
+  display: none;
 }
 
 /* remove arrows for num input */
@@ -96,6 +101,10 @@ button {
   text-align: right;
   color: #9ebbbd;
 }
+.num-people-err {
+  display: flex;
+  justify-content: space-between;
+}
 
 /* select tip */
 
@@ -161,8 +170,8 @@ button {
   font-weight: 800;
 }
 .reset-btn {
-  background-color: var(--highlight);
-  color: var(--dark-cyan);
+  background-color: #0b686d;
+  color: #095c61;
   border-radius: 15px;
   grid-column: 1/-1;
   font-weight: 800;
@@ -170,6 +179,7 @@ button {
   height: 48px;
 }
 
+/* desktop */
 @media (min-width: 950px) {
   /* container */
   .container {
@@ -211,6 +221,7 @@ button {
     height: 417px;
     width: 413px;
     padding: 3rem 2rem;
+    justify-self: end;
   }
 
   .top-total {
@@ -219,10 +230,51 @@ button {
 
   .middle-total {
     align-self: start;
-    margin-bottom: 5.5rem;
+    margin-bottom: 6.5rem;
   }
 
   .reset-btn {
     align-self: end;
   }
+}
+
+/* hover / active for desktop */
+@media (hover: hover) and (pointer: fine) {
+  .reset-btn:hover,
+  .bill-input:hover,
+  .num-people-input:hover,
+  .percent-button:hover,
+  .custom-tip-input:hover {
+    cursor: pointer;
+  }
+
+  .bill-input:focus,
+  .num-people-input:focus,
+  .custom-tip-input:focus {
+    outline: 3px solid var(--highlight);
+  }
+
+  .reset-btn:active,
+  .percent-button:active {
+    background-color: var(--active);
+  }
+  .percent-button:active {
+    color: var(--dark-cyan);
+  }
+}
+
+/* active / error */
+.active-reset-btn,
+.active-percent-btn {
+  background-color: var(--highlight);
+  color: var(--dark-cyan);
+}
+
+.error-input:focus {
+  outline: 3px solid red;
+}
+
+.error-text-display {
+  display: inline;
+  color: red;
 }
