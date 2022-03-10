@@ -1,8 +1,3 @@
-// add mobile events
-
-const isHoverableDevice = window.matchMedia(
-  "(hover: hover) and (pointer: fine)"
-);
 const bill = document.querySelector(".bill-input");
 const numPeople = document.querySelector(".num-people-input");
 const tipPercentBtns = document.querySelectorAll(".percent-button");
@@ -14,13 +9,16 @@ const errorText = document.querySelector(".error-text");
 const tipAmount = document.querySelector(".tip-total-amount.top-total");
 const totalAmount = document.querySelector(".tip-total-amount.middle-total");
 
-// if (isHoverableDevice.matches) return;
-
-// activate reset btn on inputs
-function toggleResetBtn() {
-  const activeArr = arrTipBtns.filter((el) =>
+// getActiveTipBtn
+function getActiveTipBtn() {
+  return (activeArr = arrTipBtns.filter((el) =>
     el.classList.contains("active-percent-btn")
-  );
+  ));
+}
+
+// activate reset btn on any input
+function toggleResetBtn() {
+  const activeArr = getActiveTipBtn();
   if (
     bill.value === "" &&
     numPeople.value === "" &&
@@ -36,28 +34,30 @@ function toggleResetBtn() {
 }
 document.body.addEventListener("keyup", toggleResetBtn);
 
-// add active to target % btn, remove active from all % btns
+// add active to target % btn, remove active from all other % btns
 function percentBtnAddActive(e) {
   arrTipBtns.forEach((el) => el.classList?.remove("active-percent-btn"));
   e.target.classList.add("active-percent-btn");
   tipPercentCustom.value = "";
-
-  //reset btn
   toggleResetBtn();
 }
+
 arrTipBtns.forEach((el) => el.addEventListener("click", percentBtnAddActive));
 
-// clear % btns active class when using custom %
-tipPercentCustom.addEventListener("click", function () {
-  arrTipBtns.forEach((el) => el.classList?.remove("active-percent-btn"));
-});
+// clear active percent btns
+function clearActiveClassPercentBtns() {
+  arrTipBtns.forEach((el) => el.classList.remove("active-percent-btn"));
+}
 
-// reset btn clear
+// clear % btns active class when using custom %
+tipPercentCustom.addEventListener("click", clearActiveClassPercentBtns);
+
+// reset btn clear all inputs
 function clearInputs() {
   bill.value = "";
   numPeople.value = "";
   tipPercentCustom.value = "";
-  arrTipBtns.forEach((el) => el.classList?.remove("active-percent-btn"));
+  clearActiveClassPercentBtns();
   toggleResetBtn();
   tipAmount.textContent = "$0.00";
   totalAmount.textContent = "$0.00";
@@ -77,20 +77,20 @@ function errorMsg(e) {
 
 numPeople.addEventListener("keyup", errorMsg);
 
+// calc tip/totals
 function calcTip() {
   let totalPerPerson;
   let tipAmountPerPerson;
 
-  const activeArr = arrTipBtns.filter((el) =>
-    el.classList.contains("active-percent-btn")
-  );
+  const activeArr = getActiveTipBtn();
+
   const readyActiveArr =
     activeArr.length > 0 && tipPercentCustom.value === "" ? true : false;
 
   const readyCustom =
     activeArr.length === 0 && tipPercentCustom.value !== "" ? true : false;
 
-  // check if ready & calculate
+  // check if ready & calculate if so
   if (
     bill.value === "" ||
     numPeople.value === "" ||

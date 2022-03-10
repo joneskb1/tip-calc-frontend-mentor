@@ -1,10 +1,4 @@
 /* general */
-* {
-  margin: 0;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-family: "Space Mono", monospace;
-}
 
 :root {
   --dark-cyan: hsl(183, 100%, 15%);
@@ -14,6 +8,13 @@
   --light-gray-cyan2: hsl(189, 41%, 97%);
   --highlight: hsl(172, 67%, 45%);
   --active: #9fe8df;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Space Mono", monospace;
 }
 
 body {
@@ -31,7 +32,7 @@ button {
   display: none;
 }
 
-/* remove arrows for num input */
+/* remove arrows for num inputs */
 .bill-input::-webkit-outer-spin-button,
 .bill-input::-webkit-inner-spin-button,
 .num-people-input::-webkit-outer-spin-button,
@@ -263,7 +264,7 @@ button {
   }
 }
 
-/* active / error */
+/* active / error for % tip buttons */
 .active-reset-btn,
 .active-percent-btn {
   background-color: var(--highlight);
