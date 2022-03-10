@@ -1,5 +1,3 @@
-// fix error on num people 10 is triggering it
-// fix rounding
 // add mobile events
 
 const isHoverableDevice = window.matchMedia(
@@ -30,6 +28,8 @@ function toggleResetBtn() {
     activeArr.length === 0
   ) {
     resetBtn.classList.remove("active-reset-btn");
+    tipAmount.textContent = "$0.00";
+    totalAmount.textContent = "$0.00";
   } else {
     resetBtn.classList.add("active-reset-btn");
   }
@@ -59,12 +59,14 @@ function clearInputs() {
   tipPercentCustom.value = "";
   arrTipBtns.forEach((el) => el.classList?.remove("active-percent-btn"));
   toggleResetBtn();
+  tipAmount.textContent = "$0.00";
+  totalAmount.textContent = "$0.00";
 }
 resetBtn.addEventListener("click", clearInputs);
 
 // error on num people
 function errorMsg(e) {
-  if (Number(e.key) === 0) {
+  if (Number(e.target.value) === 0 && e.target.value !== "") {
     errorText.classList.add("error-text-display");
     numPeople.classList.add("error-input");
   } else {
@@ -92,8 +94,11 @@ function calcTip() {
   if (
     bill.value === "" ||
     numPeople.value === "" ||
+    Number(numPeople.value) === 0 ||
     (!readyActiveArr && !readyCustom)
   ) {
+    tipAmount.textContent = "$0.00";
+    totalAmount.textContent = "$0.00";
     return;
   } else if (readyActiveArr) {
     totalPerPerson =
